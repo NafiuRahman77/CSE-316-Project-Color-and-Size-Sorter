@@ -1,6 +1,4 @@
 
-
-
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
@@ -23,7 +21,8 @@ class Ball{
     int clr;
     int sze;
     int rampAngle(){
-      /*
+
+/*
       if(clr==1 && sze==1) return 0;
       else if(clr==1 && sze==2) return 20;
       else if(clr==1 && sze==3) return 40;
@@ -33,6 +32,7 @@ class Ball{
       else if(clr==3 && sze==1) return 120;
       else if(clr==3 && sze==2) return 140;
       else if(clr==3 && sze==3) return 160;
+
       else return 180; */
 
       //only color 
@@ -79,6 +79,7 @@ int color(){
     b+=frequency;
     delay(10);
   }
+
   Serial.print("r : ") ; 
   Serial.print(r);
   Serial.print(" ");
@@ -97,6 +98,7 @@ int color(){
   if(r<b && r<g && r>0) return 1;
    
   if((g<r && g<b && g>0) || x<=1.15) return 2;
+
   if(b<g && b<r && b>0) return 3;
   return 0;
 }
@@ -163,9 +165,8 @@ void loop() {
   // put your main code here, to run repeatedly:
   
   if(stateNo == 1){ // fetch another ball
-
-  servo1.write(0);
-  servo4.write(0);
+      servo1.write(0) ; 
+      servo4.write(0) ; 
       delay(500); 
       servo1.write(90);
       stateNo = 2;
@@ -179,7 +180,7 @@ void loop() {
         servo2.write(180);
         delay(500);
         servo1.write(180);
-        delay(500);
+        delay(500) ;
         stateNo = 3 ; 
   }
   else if(stateNo == 3){ // level 1 releases, level 2 receives
